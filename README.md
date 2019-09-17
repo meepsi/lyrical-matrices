@@ -1,4 +1,4 @@
-# Lyrical Matrices v0.1 #
+# Lyrical Matrices v0.2 #
 
 ### Output Example ###
 [![example output image](images/example.png)](images/example.png)
@@ -40,4 +40,9 @@ This project was inspired by Colin Moris' TEDxPenn talk on "Pop Music is Stuck o
 2019-09-13 - v0.1:
 - First release of the Lyrical Matrices script
 - Added pipenv support
-- Created README.md
+- Created README.md  
+
+2019-09-17 - v0.2:
+- Replaced lines 109 through 117 with optimized code.
+- Cleaned up f strings formatting for script description.
+- Updated version number in README.md.

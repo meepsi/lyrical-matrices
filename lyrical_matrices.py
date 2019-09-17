@@ -8,23 +8,23 @@ import math
 
 
 # Version Number
-vers = "0.1"
+vers = "0.2"
+# u/meepsi
 
 
 # Description
-desc = (
-    f"""This python 3 script takes lyrics in the form of .txt files and """
-    f"""plots them correlation matrices. A correlation matrix is """
-    f"""a table showing correlation coefficients between sets of variables """
-    f"""(in our case words in a given song). Each word in the table is """
-    f"""correlated with each of the other words in the table. This allows """
-    f"""us to observe which pairs have the highest correlation (which pairs """
-    f"""of words match). In our case, we are using this correlation matrix """
-    f"""to give a visual representation of repetition and patterns found """
-    f"""in a given song. For formatted title option, lyrics .txt files must """
-    f"""be named in the following format: """
-    f"""'##_Artist-Name_Album-Name_Song-Name.txt' (## is track number). For """
-    f"""example '19_Pink-Floyd_The-Wall_Comfortably-Numb.txt'""")
+desc = (f"""
+    This python 3 script takes lyrics in the form of .txt files and plots them
+    correlation matrices. A correlation matrix is a table showing correlation
+    coefficients between sets of variables (in our case words in a given song).
+    Each word in the table is correlated with each of the other words in the
+    table. This allows us to observe which pairs have the highest correlation
+    (which pairs of words match). In our case, we are using this correlation
+    matrix to give a visual representation of repetition and patterns found in
+    a given song. For formatted title option, lyrics .txt files must be named
+    in the following format: '##_Artist-Name_Album-Name_Song-Name.txt' (## is
+    track number). For example '19_Pink-Floyd_The-Wall_Comfortably-Numb.txt'
+    """)
 
 
 # Default names and directories
@@ -106,15 +106,14 @@ os.chdir(lyrics_dir)
 plt.figure(figsize=(10 * width, 11 * height), dpi=dpi)
 for file in glob('*.txt'):
     i += 1
-    lyrics_1 = open(file)
-    wordlist = []
-    for word in lyrics_1:
-        wordlist.append(word.split(' '))
 
     lyrics = []
-    for line in wordlist:
-        for word in line:
-            lyrics.append(s('[^a-zA-Z0-9_]+', '', word.lower()))
+    with open(file) as file_lines:
+        for line in file_lines:
+            line_words = line.split(' ')
+            for word in line_words:
+                sanitized_word = s('[^a-zA-Z0-9_]+', '', word.lower())
+                lyrics.append(sanitized_word)
 
     matrix = []
     for y in lyrics:
